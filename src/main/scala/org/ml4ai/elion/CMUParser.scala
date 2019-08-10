@@ -31,7 +31,7 @@ object CMUParser {
       rows
     }
       catch {
-        case e =>
+        case _: Throwable =>
           Seq.empty
       }
     finally {
