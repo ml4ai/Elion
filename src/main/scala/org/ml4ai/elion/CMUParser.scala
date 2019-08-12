@@ -5,8 +5,6 @@ import java.io.File
 
 object CMUParser {
 
-  val path = "PMC5879957-cmu-out.tsv"
-
   def parseFile(file:File):Seq[CMURow] = parseFile(file.getAbsolutePath)
 
   def parseFile(path:String):Seq[CMURow] = {
