@@ -8,13 +8,13 @@ import org.clulab.utils.Serializer
  */
 object IndexLoader {
 
-  def loadIndex(path:String):Map[String, List[String]] = {
+  def load(path:String):Map[String, List[String]] = {
     Serializer.load[Map[String, List[String]]](path)
   }
 
-  def loadIndexFromConfig: Map[String, List[String]] = {
+  def loadFromConfig: Map[String, List[String]] = {
     val conf = ConfigFactory.load().getConfig("indexLoader")
     val path = conf.getString("path")
-    loadIndex(path)
+    load(path)
   }
 }
