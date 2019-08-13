@@ -4,9 +4,9 @@ import org.clulab.reach.ReachSystem
 import org.clulab.reach.grounding.KBResolution
 import org.ml4ai.elion.utils.IndexLoader
 
-object EntityResolver extends App {
-  val reachSystem = new ReachSystem()
-  val index = IndexLoader.loadFromConfig
+class EntityResolver{
+  private val reachSystem = new ReachSystem()
+  private val index = IndexLoader.loadFromConfig
 
   def groundingID(entity:String): Seq[KBResolution] = {
     val doc = reachSystem.procAnnotator.annotate(entity)
@@ -26,14 +26,5 @@ object EntityResolver extends App {
         kr.id -> findFilesByGrounding(kr.id)
     } toMap
   }
-
-//  val groundings = groundingID("human liver")
-//
-//  groundings foreach {
-//    gr =>
-//      println(gr.nsId)
-//  }
-
-//  println(findFilesByText("MAPK"))
 
 }

@@ -1,6 +1,8 @@
-name := "Elion"
+name := "elion"
 
-version := "0.1"
+organization := "org.ml4ai"
+
+version := "0.1-SNAPSHOT"
 
 scalaVersion := "2.11.11"
 
