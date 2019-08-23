@@ -1,12 +1,13 @@
 package org.ml4ai.elion
 
+import com.typesafe.scalalogging.LazyLogging
 import org.clulab.reach.ReachSystem
 import org.clulab.reach.grounding.KBResolution
 import org.ml4ai.elion.utils.IndexLoader
 
-class EntityResolver{
+class EntityResolver extends LazyLogging{
   private val reachSystem = new ReachSystem()
-  private val index = IndexLoader.loadFromConfig
+  private val index = IndexLoader.cleanIndex(IndexLoader.loadFromConfig)
 
   def groundingID(entity:String): Seq[KBResolution] = {
     val doc = reachSystem.procAnnotator.annotate(entity)

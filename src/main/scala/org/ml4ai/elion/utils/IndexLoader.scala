@@ -17,4 +17,22 @@ object IndexLoader {
     val path = conf.getString("path")
     load(path)
   }
+
+  def cleanIndex(index:Map[String,  List[String]]): Map[String, List[String]] = {
+    index.toSeq.withFilter{
+      case (key, _) =>
+        !key.startsWith("UAZ")
+    }.flatMap{
+      case (key, vals) =>
+        val newKeys = key.replaceAll("""[{}]""", "").replaceAll("""\.\w+$""", "").split(",")
+        for(newKey <- newKeys) yield newKey.trim -> vals
+    }.groupBy{
+      case (key, _) => key
+    }.mapValues{
+      elems =>
+        elems.flatMap{
+          case (_, vals) => vals
+        }.toSet.toList
+    }
+  }
 }
