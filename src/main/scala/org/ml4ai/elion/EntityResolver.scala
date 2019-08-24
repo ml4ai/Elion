@@ -18,7 +18,7 @@ class EntityResolver extends LazyLogging{
     ) collect { case Some(gr) => gr }
   }
 
-  def findFilesByGrounding(id:String): Seq[String] = index.getOrElse(id, Nil)
+  def findFilesByGrounding(id:String): Seq[String] = index.getOrElse(id, Nil) map { PMCID => s"$PMCID-cmu-out.tsv" }
 
   def findFilesByText(text:String):Map[String, Seq[String]] = {
     val krs = groundingID(text)
