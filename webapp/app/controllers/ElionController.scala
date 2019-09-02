@@ -34,7 +34,7 @@ class ElionController @Inject()(cc: ControllerComponents) (implicit assetsFinder
   }
 
   def groundingId(id:String) = Action {
-    val ret = resolver.findFilesByGrounding(id)
+    val ret = Map("PMCIDS" -> resolver.findFilesByGrounding(id))
     Ok(Json.toJson(ret))
   }
 }
